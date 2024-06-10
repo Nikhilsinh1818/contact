@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Student Form</h1>
+  
+    <form method="get">
+      <input type="hidden" name="eid" value="<%=up%>">
+      <tr>
+        <td><input type="text" placeholder="SurName" value="<%=input.surname%>" name="surname"></td>
+        <td><input type="text" placeholder="FirstName" value="<%=input.firstname%>" name="firstname"></td>
+        <td><input type="text" placeholder="LastName" value="<%=input.lastname%>" name="lastname"></td>
+      </tr><br><br>
+      <tr>
+        <td><label for="male">Gender</label></td>
+        <td><input type="radio" name="gender" id="male" value="Male" <%= input.gender === "Male" ? "checked" : "" %>>Male</td>
+        <td><input type="radio" name="gender" id="female" value="Female" <%= input.gender === "Female" ? "checked" : "" %>>Female</td>      </tr><br><br>
+      <tr>
+        <input type="text" value="<%=input.username%>" placeholder="UserName" name="username" required>
+        <input type="password" value="<%=input.password%>" placeholder="Password" name="password" required>
+      </tr><br><br>
+      <input type="submit">
+    </form><br>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>SurName</th>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>Gender</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Delete</th>
+          <th>Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(function(fun,i) { %>
+          <tr>
+            <td><%= fun.surname %></td>
+            <td><%= fun.firstname %></td>
+            <td><%= fun.lastname %></td>
+            <td><%= fun.gender %></td>
+            <td><%= fun.username %></td>
+            <td><%= fun.password %></td>
+            <td><button><a href="/?del=<%=fun._id%>">Delete</a></button></td>
+            <td><button><a href="/?up=<%=fun._id%>">Update</a></button></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>
